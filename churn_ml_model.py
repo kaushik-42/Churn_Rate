@@ -152,8 +152,8 @@ if best_model in ['Random Forest', 'Gradient Boosting']:
     sns.barplot(data=feature_importance.head(10), x='importance', y='feature')
     plt.title(f'Top 10 Feature Importance - {best_model}')
     plt.tight_layout()
-    plt.savefig('feature_importance.png', dpi=300, bbox_inches='tight')
-    print("Feature importance plot saved as 'feature_importance.png'")
+    plt.savefig('visualizations/feature_importance.png', dpi=300, bbox_inches='tight')
+    print("Feature importance plot saved as 'visualizations/feature_importance.png'")
 
 # ROC Curve
 plt.figure(figsize=(12, 5))
@@ -179,8 +179,8 @@ plt.ylabel('Actual')
 plt.xlabel('Predicted')
 
 plt.tight_layout()
-plt.savefig('model_evaluation.png', dpi=300, bbox_inches='tight')
-print("Model evaluation plots saved as 'model_evaluation.png'")
+plt.savefig('visualizations/model_evaluation.png', dpi=300, bbox_inches='tight')
+print("Model evaluation plots saved as 'visualizations/model_evaluation.png'")
 
 # Save the best model and scaler
 joblib.dump(best_model_obj, f'best_churn_model_{best_model.lower().replace(" ", "_")}.pkl')

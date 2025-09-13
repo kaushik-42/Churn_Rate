@@ -151,7 +151,7 @@ churn-prediction-ml/
 │   ├── user_engagement_analysis.py         # Engagement analysis
 │   └── churn_prediction_interface.py       # Prediction interface
 ├── 📊 Outputs
-│   ├── *.png                               # Visualizations
+│   ├── visualizations/                     # All visualization files
 │   ├── *.csv                               # Analysis results
 │   └── model_performance_summary.csv       # Model comparison
 ├── 📖 Documentation

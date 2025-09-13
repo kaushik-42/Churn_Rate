@@ -142,8 +142,8 @@ axes[2,2].set_title('Billing Count by Churn Status')
 axes[2,2].set_xticklabels(['Active', 'Churned'])
 
 plt.tight_layout()
-plt.savefig('user_engagement_dashboard.png', dpi=300, bbox_inches='tight')
-print("Engagement dashboard saved as 'user_engagement_dashboard.png'")
+plt.savefig('visualizations/user_engagement_dashboard.png', dpi=300, bbox_inches='tight')
+print("Engagement dashboard saved as 'visualizations/user_engagement_dashboard.png'")
 
 # Customer Lifetime Value (CLV) Analysis
 print("\n10. CUSTOMER LIFETIME VALUE ANALYSIS")

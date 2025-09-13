@@ -150,8 +150,8 @@ sns.boxplot(data=master_data, x='churned', y='failed_payments', ax=axes[1,1])
 axes[1,1].set_title('Failed Payments by Churn Status')
 
 plt.tight_layout()
-plt.savefig('churn_eda_plots.png', dpi=300, bbox_inches='tight')
-print("Visualizations saved as 'churn_eda_plots.png'")
+plt.savefig('visualizations/churn_eda_plots.png', dpi=300, bbox_inches='tight')
+print("Visualizations saved as 'visualizations/churn_eda_plots.png'")
 
 # Feature correlation with churn
 print("\n=== FEATURE CORRELATION WITH CHURN ===")
