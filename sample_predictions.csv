@@ -1,0 +1,4 @@
+user_id,name,tenure_days,Price,billing_count,avg_billing_amount,total_billing,billing_amount_std,failed_payments,days_since_last_billing,days_since_last_renewal,action_count,days_since_last_action,Grace Time,subscription_type_encoded,auto_renewal_encoded,churn_probability,churn_prediction,risk_level
+1001,High Risk User,30,25.99,1,25.99,25.99,0,2,45,45,0,30,5,0,0,0.5331361590862181,Will Stay,MEDIUM
+1002,Medium Risk User,120,49.99,4,49.99,199.96,0,1,25,25,2,10,5,0,1,0.5765699588928151,Will Stay,MEDIUM
+1003,Low Risk User,365,99.99,12,99.99,1199.88,0,0,15,15,8,2,5,1,1,0.5646034232873576,Will Stay,MEDIUM
