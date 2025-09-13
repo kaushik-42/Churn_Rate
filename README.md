@@ -29,7 +29,7 @@ jupyter notebook
 
 ## 📊 Project Overview
 
-This project develops a machine learning model to predict customer churn using the industry-standard Telco Customer Churn dataset. The model identifies customers at risk of churning, enabling proactive retention strategies and business insights.
+This project develops a machine learning model to predict customer churn using the industry-standard Telco Customer Churn dataset with **84.48% ROC-AUC accuracy** using Logistic Regression. The model identifies customers at risk of churning, enabling proactive retention strategies and business insights.
 
 ### Key Features
 - 🔍 **Comprehensive EDA** with multi-source data analysis
@@ -66,12 +66,12 @@ Raw Data → EDA → Feature Engineering → Model Training → Evaluation → D
 ```
 
 ### Models Tested
-| Model | Performance | Use Case |
-|-------|-------------|----------|
-| **Random Forest** | **🏆 Best Overall** | **Primary Model** |
-| Gradient Boosting | High Accuracy | Feature Importance |
-| SVM | Good Generalization | Risk Classification |
-| Logistic Regression | Interpretable | Baseline Model |
+| Model | ROC-AUC | Performance |
+|-------|---------|-------------|
+| **Logistic Regression** | **0.8448** | **🏆 Best Model** |
+| Random Forest | 0.82 | Strong Performance |
+| Gradient Boosting | 0.81 | Good Accuracy |
+| SVM | 0.79 | Good Generalization |
 
 ### Key Features Used
 1. **Demographics**: `SeniorCitizen`, `Partner`, `Dependents`
@@ -83,10 +83,12 @@ Raw Data → EDA → Feature Engineering → Model Training → Evaluation → D
 ## 📈 Results & Impact
 
 ### Model Performance
-- **Best Model**: Random Forest with hyperparameter tuning
+- **Best Model**: Logistic Regression (ROC-AUC: 0.8448)
+- **F1-Score**: 0.5904
+- **Accuracy**: 80.7%
+- **Churn Detection Rate**: 52.4% of actual churners identified
 - **Cross-Validation**: Robust 5-fold validation
 - **Risk Classification**: HIGH (>0.7), MEDIUM (0.4-0.7), LOW (<0.4)
-- **Feature Importance**: Contract type, tenure, and monthly charges are top predictors
 
 ### Business Insights
 - 🚨 **27% churn rate** in telecom industry
@@ -96,9 +98,11 @@ Raw Data → EDA → Feature Engineering → Model Training → Evaluation → D
 - 📱 **Fiber optic** customers show higher churn tendency
 - 👥 **Senior citizens** have different churn patterns
 
-### Expected Business Impact
-- 📈 **15-25% reduction** in churn through targeted interventions
-- 💰 **Revenue protection** for high-value customers
+### Business Impact
+- 🎯 **52.4% churn detection rate** - identifies half of at-risk customers
+- 📊 **1,409 test customers** with 374 actual churners
+- ✅ **196 correctly identified** high-risk customers for targeted campaigns
+- 💰 **Revenue protection** through proactive retention
 - ⚡ **Automated risk scoring** reduces manual analysis
 - 🎯 **Data-driven insights** for retention strategies
 
@@ -122,7 +126,7 @@ customer_data = {
 result = predictor.predict_single_customer(customer_data)
 print(f"Churn Probability: {result['churn_probability']:.1%}")
 print(f"Risk Level: {result['risk_level']}")
-print(f"Recommendations: {result['recommendations']}")
+print(f"Model: Logistic Regression (ROC-AUC: 0.8448)")
 ```
 
 ### Batch Processing
