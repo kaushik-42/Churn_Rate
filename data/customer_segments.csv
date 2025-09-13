@@ -1,0 +1,10 @@
+TenureSegment,ChargesSegment,Customer_Count,Churn_Rate
+New (0-12),Low ($0-35),635,0.239
+New (0-12),Medium ($35-65),542,0.408
+New (0-12),High ($65+),998,0.665
+Medium (13-36),Low ($0-35),461,0.052
+Medium (13-36),Medium ($35-65),402,0.157
+Medium (13-36),High ($65+),993,0.39
+Long (37+),Low ($0-35),633,0.021
+Long (37+),Medium ($35-65),462,0.091
+Long (37+),High ($65+),1906,0.159

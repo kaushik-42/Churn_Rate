@@ -4,7 +4,7 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-orange.svg)](https://scikit-learn.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive machine learning project that predicts customer churn in subscription-based businesses using historical subscription and usage data. The project includes end-to-end ML pipeline from data exploration to production-ready prediction interface.
+A comprehensive machine learning project that predicts customer churn for telecom companies using the Telco Customer Churn dataset. The project includes end-to-end ML pipeline implemented in Jupyter notebooks from data exploration to production-ready prediction interface.
 
 ## 🚀 Quick Start
 
@@ -14,21 +14,22 @@ git clone https://github.com/kaushik-42/Churn_Rate.git
 cd Churn_Rate
 
 # Install dependencies
-pip install pandas numpy scikit-learn matplotlib seaborn joblib openpyxl
+pip install pandas numpy scikit-learn matplotlib seaborn joblib jupyter
 
-# Run the complete pipeline (from project root)
-cd src
-python data_exploration.py
-python explore_excel_sheets.py
-python churn_analysis_eda.py
-python churn_ml_model.py
-python user_engagement_analysis.py
-python churn_prediction_interface.py
+# Start Jupyter Notebook
+jupyter notebook
+
+# Run the notebooks in order:
+# 1. notebooks/01_data_exploration.ipynb
+# 2. notebooks/02_feature_engineering.ipynb  
+# 3. notebooks/03_exploratory_data_analysis.ipynb
+# 4. notebooks/04_machine_learning_models.ipynb
+# 5. notebooks/05_prediction_interface.ipynb
 ```
 
 ## 📊 Project Overview
 
-This project develops a machine learning model to predict customer churn with **68% ROC-AUC accuracy** using Support Vector Machine (SVM). The model identifies users at risk of canceling subscriptions, enabling proactive retention strategies.
+This project develops a machine learning model to predict customer churn using the industry-standard Telco Customer Churn dataset. The model identifies customers at risk of churning, enabling proactive retention strategies and business insights.
 
 ### Key Features
 - 🔍 **Comprehensive EDA** with multi-source data analysis
@@ -40,19 +41,22 @@ This project develops a machine learning model to predict customer churn with **
 
 ## 📁 Dataset
 
-The project uses a multi-sheet Excel dataset containing:
+The project uses the **Telco Customer Churn Dataset** from Kaggle:
+- **Source**: https://www.kaggle.com/datasets/blastchar/telco-customer-churn
+- **Description**: Comprehensive telecom customer data with churn labels
 
-- **User_Data**: 100 users with basic information and status
-- **Subscriptions**: Subscription details, dates, and status
-- **Subscription_Plans**: Product pricing and auto-renewal settings
-- **Subscription_Logs**: Activity logs showing status changes
-- **Billing_Information**: Payment records and billing history
+**Dataset Features:**
+- **Customer Demographics**: Gender, age, senior citizen status, partner, dependents
+- **Account Information**: Tenure, contract type, payment method, billing preferences
+- **Services**: Phone service, internet service, online security, tech support, etc.
+- **Billing**: Monthly charges, total charges, paperless billing
+- **Target**: Churn (Yes/No)
 
 **Key Statistics:**
-- 📊 Total Users: 100
-- 📉 Churn Rate: 51%
-- 💰 Average Billing: $239.27
-- 📅 Subscription Types: Monthly (59%), Yearly (41%)
+- 📊 Total Customers: 7,043
+- 📉 Churn Rate: ~27%
+- 🏢 Industry: Telecommunications
+- 📊 Features: 20 predictive features
 
 ## 🛠 Technical Architecture
 
@@ -62,32 +66,35 @@ Raw Data → EDA → Feature Engineering → Model Training → Evaluation → D
 ```
 
 ### Models Tested
-| Model | ROC-AUC | Performance |
-|-------|---------|-------------|
-| **SVM** | **0.68** | **🏆 Best Model** |
-| Gradient Boosting | 0.29 | Good |
-| Random Forest | 0.21 | Fair |
-| Logistic Regression | 0.19 | Baseline |
+| Model | Performance | Use Case |
+|-------|-------------|----------|
+| **Random Forest** | **🏆 Best Overall** | **Primary Model** |
+| Gradient Boosting | High Accuracy | Feature Importance |
+| SVM | Good Generalization | Risk Classification |
+| Logistic Regression | Interpretable | Baseline Model |
 
-### Key Features Engineered
-1. **Behavioral**: `tenure_days`, `action_count`, `days_since_last_action`
-2. **Financial**: `avg_billing_amount`, `failed_payments`, `billing_count`
-3. **Engagement**: `days_since_last_billing`, `days_since_last_renewal`
-4. **Subscription**: `subscription_type_encoded`, `auto_renewal_encoded`
+### Key Features Used
+1. **Demographics**: `SeniorCitizen`, `Partner`, `Dependents`
+2. **Account**: `tenure`, `Contract`, `PaymentMethod`, `PaperlessBilling`
+3. **Services**: `PhoneService`, `InternetService`, `OnlineSecurity`, `TechSupport`
+4. **Financial**: `MonthlyCharges`, `TotalCharges`
+5. **Engineered**: `CLV_estimate`, `services_count`, `avg_monthly_charges`
 
 ## 📈 Results & Impact
 
 ### Model Performance
-- **ROC-AUC Score**: 68%
-- **Cross-Validation**: 55.8% ± 7.8%
-- **Risk Classification**: HIGH (>70%), MEDIUM (40-70%), LOW (<40%)
+- **Best Model**: Random Forest with hyperparameter tuning
+- **Cross-Validation**: Robust 5-fold validation
+- **Risk Classification**: HIGH (>0.7), MEDIUM (0.4-0.7), LOW (<0.4)
+- **Feature Importance**: Contract type, tenure, and monthly charges are top predictors
 
 ### Business Insights
-- 🚨 **51% churn rate** indicates significant retention challenges
-- 💳 **Payment failures** strongly correlate with churn
-- 📱 **Low engagement** (80% of users) drives higher churn
-- ⚙️ **Auto-renewal disabled** users have higher churn tendency
-- 📅 **Tenure** shows inverse relationship with churn
+- 🚨 **27% churn rate** in telecom industry
+- 📅 **Month-to-month contracts** have highest churn risk
+- 💰 **Higher monthly charges** correlate with increased churn
+- 🎯 **New customers** (low tenure) are most at risk
+- 📱 **Fiber optic** customers show higher churn tendency
+- 👥 **Senior citizens** have different churn patterns
 
 ### Expected Business Impact
 - 📈 **15-25% reduction** in churn through targeted interventions
@@ -97,30 +104,35 @@ Raw Data → EDA → Feature Engineering → Model Training → Evaluation → D
 
 ## 🔧 Usage
 
-### Single User Prediction
+### Single Customer Prediction
 ```python
-from churn_prediction_interface import ChurnPredictor
+from src.telco_churn_predictor import TelcoChurnPredictor
 
-predictor = ChurnPredictor()
-user_data = {
-    'tenure_days': 120,
-    'Price': 49.99,
-    'billing_count': 4,
-    'failed_payments': 1,
-    'auto_renewal_encoded': 1,
+predictor = TelcoChurnPredictor()
+customer_data = {
+    'tenure': 12,
+    'MonthlyCharges': 75.50,
+    'TotalCharges': 906.00,
+    'Contract': 'Month-to-month',
+    'PaymentMethod': 'Electronic check',
+    'InternetService': 'Fiber optic',
     # ... other features
 }
 
-result = predictor.predict_single_user(user_data)
+result = predictor.predict_single_customer(customer_data)
 print(f"Churn Probability: {result['churn_probability']:.1%}")
 print(f"Risk Level: {result['risk_level']}")
+print(f"Recommendations: {result['recommendations']}")
 ```
 
 ### Batch Processing
 ```python
-# Load your dataset
-df = pd.read_csv('your_user_data.csv')
+# Load your customer dataset
+df = pd.read_csv('your_customer_data.csv')
 results = predictor.predict_batch(df)
+
+# Get high-risk customers for targeted campaigns
+high_risk = results[results['risk_level'] == 'HIGH']
 ```
 
 ## 📊 Visualizations
@@ -135,30 +147,27 @@ The project generates comprehensive visualizations:
 ## 📋 File Structure
 
 ```
-churn-prediction-ml/
+Churn_Project/
+├── 📓 Jupyter Notebooks
+│   ├── 01_data_exploration.ipynb           # Initial data exploration
+│   ├── 02_feature_engineering.ipynb        # Data preprocessing & feature engineering
+│   ├── 03_exploratory_data_analysis.ipynb  # Comprehensive EDA
+│   ├── 04_machine_learning_models.ipynb    # Model training & evaluation
+│   └── 05_prediction_interface.ipynb       # Production interface
 ├── 📊 Data Files
-│   ├── SubscriptionUseCase_Dataset.xlsx     # Original dataset
-│   ├── master_churn_dataset.csv            # Processed dataset
-│   └── *.csv                               # Individual data tables
+│   ├── WA_Fn-UseC_-Telco-Customer-Churn.csv # Telco dataset
+│   └── processed_data/                      # Processed datasets
 ├── 🤖 Model Files
-│   ├── best_churn_model_svm.pkl            # Trained SVM model
-│   ├── feature_scaler.pkl                  # Feature scaler
-│   └── feature_names.pkl                   # Required features
-├── 🔍 Analysis Scripts
-│   ├── data_exploration.py                 # Initial data exploration
-│   ├── explore_excel_sheets.py             # Multi-sheet analysis
-│   ├── churn_analysis_eda.py               # EDA & feature engineering
-│   ├── churn_ml_model.py                   # Model training
-│   ├── user_engagement_analysis.py         # Engagement analysis
-│   └── churn_prediction_interface.py       # Prediction interface
-├── 📊 Outputs
-│   ├── visualizations/                     # All visualization files
-│   ├── *.csv                               # Analysis results
-│   └── model_performance_summary.csv       # Model comparison
+│   ├── models/                             # Trained models
+│   ├── scalers/                            # Feature scalers
+│   └── encoders/                           # Label encoders
+├── 🔍 Source Code
+│   └── src/telco_churn_predictor.py        # Production prediction class
+├── 📊 Visualizations
+│   └── visualizations/                     # All plots and charts
 ├── 📖 Documentation
 │   ├── README.md                           # This file
-│   ├── RUN_INSTRUCTIONS.md                 # Step-by-step guide
-│   └── PROJECT_SUMMARY.md                  # Detailed analysis
+│   └── docs/                               # Additional documentation
 └── ⚙️ Configuration
     └── .gitignore                          # Git ignore rules
 ```
@@ -205,16 +214,16 @@ churn-prediction-ml/
 ## 🎯 Business Recommendations
 
 ### Immediate Actions
-1. 🎯 **Target High-Risk Users**: Focus on users with failed payments
-2. ⚙️ **Promote Auto-Renewal**: Encourage auto-renewal adoption
-3. 📱 **Engagement Campaigns**: Increase user activity and feature usage
-4. 💳 **Payment Support**: Provide assistance for payment issues
+1. 🎯 **Target Month-to-Month Customers**: Convert to longer contracts
+2. 📞 **Proactive Support**: Reach out to fiber optic customers
+3. 💰 **Pricing Review**: Optimize pricing for high-charge customers
+4. 👥 **Senior Citizen Programs**: Tailored retention for seniors
 
 ### Long-term Strategies
-1. 🏆 **Loyalty Programs**: Reward long-tenure customers
-2. ⭐ **Premium Features**: Enhance value proposition
-3. 🔔 **Proactive Support**: Monitor and reach out to at-risk users
-4. 💰 **Pricing Strategy**: Review pricing based on churn patterns
+1. 🏆 **Contract Incentives**: Promote longer-term contracts
+2. ⭐ **Service Bundling**: Increase service adoption
+3. 🔔 **Predictive Interventions**: Automated risk monitoring
+4. 📊 **Data-Driven Pricing**: Dynamic pricing based on churn risk
 
 ## 🤝 Contributing
 
