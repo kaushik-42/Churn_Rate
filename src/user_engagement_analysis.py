@@ -9,9 +9,9 @@ warnings.filterwarnings('ignore')
 print("=== USER ENGAGEMENT ANALYSIS ===\n")
 
 # Load data
-df = pd.read_csv('master_churn_dataset.csv')
-billing_info = pd.read_csv('billing_information_data.csv')
-subscription_logs = pd.read_csv('subscription_logs_data.csv')
+df = pd.read_csv('../data/master_churn_dataset.csv')
+billing_info = pd.read_csv('../data/billing_information_data.csv')
+subscription_logs = pd.read_csv('../data/subscription_logs_data.csv')
 
 # Remove duplicates for user-level analysis
 df_users = df.drop_duplicates(subset=['User Id'], keep='first')
@@ -142,8 +142,8 @@ axes[2,2].set_title('Billing Count by Churn Status')
 axes[2,2].set_xticklabels(['Active', 'Churned'])
 
 plt.tight_layout()
-plt.savefig('visualizations/user_engagement_dashboard.png', dpi=300, bbox_inches='tight')
-print("Engagement dashboard saved as 'visualizations/user_engagement_dashboard.png'")
+plt.savefig('../visualizations/user_engagement_dashboard.png', dpi=300, bbox_inches='tight')
+print("Engagement dashboard saved as '../visualizations/user_engagement_dashboard.png'")
 
 # Customer Lifetime Value (CLV) Analysis
 print("\n10. CUSTOMER LIFETIME VALUE ANALYSIS")
@@ -168,7 +168,7 @@ print(f"Percentage of active users at risk: {len(high_risk_users) / len(df_users
 # Save high-risk users for retention campaigns
 high_risk_users[['User Id', 'Name_x', 'Email_x', 'failed_payments', 
                 'days_since_last_billing', 'action_count', 'Auto Renewal Allowed',
-                'estimated_clv']].to_csv('high_risk_users.csv', index=False)
+                'estimated_clv']].to_csv('../data/high_risk_users.csv', index=False)
 
 print("\n12. ENGAGEMENT RECOMMENDATIONS")
 print("Based on the analysis, here are key recommendations:")
@@ -192,6 +192,6 @@ summary_report = {
 }
 
 summary_df = pd.DataFrame(list(summary_report.items()), columns=['Metric', 'Value'])
-summary_df.to_csv('engagement_summary_report.csv', index=False)
-print("\nSummary report saved as 'engagement_summary_report.csv'")
-print("\nHigh-risk users saved as 'high_risk_users.csv' for targeted retention campaigns")
+summary_df.to_csv('../data/engagement_summary_report.csv', index=False)
+print("\nSummary report saved as '../data/engagement_summary_report.csv'")
+print("\nHigh-risk users saved as '../data/high_risk_users.csv' for targeted retention campaigns")

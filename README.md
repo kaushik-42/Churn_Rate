@@ -10,13 +10,14 @@ A comprehensive machine learning project that predicts customer churn in subscri
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/churn-prediction-ml.git
-cd churn-prediction-ml
+git clone https://github.com/kaushik-42/Churn_Rate.git
+cd Churn_Rate
 
 # Install dependencies
 pip install pandas numpy scikit-learn matplotlib seaborn joblib openpyxl
 
-# Run the complete pipeline
+# Run the complete pipeline (from project root)
+cd src
 python data_exploration.py
 python explore_excel_sheets.py
 python churn_analysis_eda.py

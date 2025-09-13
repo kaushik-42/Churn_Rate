@@ -35,9 +35,9 @@ Churn_Project/
 
 ### Step 1: Navigate to Project Directory
 ```bash
-cd /path/to/Churn_Project
+cd /path/to/Churn_Rate
 # or
-cd Desktop/Churn_Project
+cd Desktop/Churn_Rate
 ```
 
 ### Step 2: Initial Data Exploration
@@ -176,7 +176,10 @@ User 1: High Risk User
 ### Option 1: Run All Steps Sequentially
 ```bash
 # Navigate to project directory
-cd Desktop/Churn_Project
+cd Desktop/Churn_Rate
+
+# Navigate to source code
+cd src
 
 # Run complete pipeline
 python data_exploration.py

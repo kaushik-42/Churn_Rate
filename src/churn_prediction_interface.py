@@ -9,9 +9,9 @@ class ChurnPredictor:
     def __init__(self):
         """Initialize the churn prediction interface"""
         try:
-            self.model = joblib.load('best_churn_model_svm.pkl')
-            self.scaler = joblib.load('feature_scaler.pkl')
-            self.feature_names = joblib.load('feature_names.pkl')
+            self.model = joblib.load('../models/best_churn_model_svm.pkl')
+            self.scaler = joblib.load('../models/feature_scaler.pkl')
+            self.feature_names = joblib.load('../models/feature_names.pkl')
             print("✅ Churn prediction model loaded successfully!")
         except FileNotFoundError:
             print("❌ Model files not found. Please run the training script first.")
@@ -204,8 +204,8 @@ def demo_predictions():
         print(batch_results[display_columns].to_string(index=False))
         
         # Save results
-        batch_results.to_csv('sample_predictions.csv', index=False)
-        print("\nBatch results saved as 'sample_predictions.csv'")
+        batch_results.to_csv('../data/sample_predictions.csv', index=False)
+        print("\nBatch results saved as '../data/sample_predictions.csv'")
     
     print("\n3. FEATURE IMPORTANCE (for new predictions)")
     print("Required features for prediction:")

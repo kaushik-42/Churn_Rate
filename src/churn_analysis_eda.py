@@ -13,11 +13,11 @@ sns.set_palette("husl")
 print("Loading all datasets...")
 
 # Load all datasets
-user_data = pd.read_csv('user_data_data.csv')
-subscriptions = pd.read_csv('subscriptions_data.csv')
-subscription_plans = pd.read_csv('subscription_plans_data.csv')
-subscription_logs = pd.read_csv('subscription_logs_data.csv')
-billing_info = pd.read_csv('billing_information_data.csv')
+user_data = pd.read_csv('../data/user_data_data.csv')
+subscriptions = pd.read_csv('../data/subscriptions_data.csv')
+subscription_plans = pd.read_csv('../data/subscription_plans_data.csv')
+subscription_logs = pd.read_csv('../data/subscription_logs_data.csv')
+billing_info = pd.read_csv('../data/billing_information_data.csv')
 
 print("=== COMPREHENSIVE DATA ANALYSIS ===\n")
 
@@ -117,8 +117,8 @@ print(f"\nFinal dataset shape: {master_data.shape}")
 print(f"Churn rate: {master_data['churned'].mean():.2%}")
 
 # Save the processed dataset
-master_data.to_csv('master_churn_dataset.csv', index=False)
-print("\nMaster dataset saved as 'master_churn_dataset.csv'")
+master_data.to_csv('../data/master_churn_dataset.csv', index=False)
+print("\nMaster dataset saved as '../data/master_churn_dataset.csv'")
 
 # Display key features
 key_features = ['User Id', 'churned', 'tenure_days', 'Price', 'billing_count', 
@@ -150,8 +150,8 @@ sns.boxplot(data=master_data, x='churned', y='failed_payments', ax=axes[1,1])
 axes[1,1].set_title('Failed Payments by Churn Status')
 
 plt.tight_layout()
-plt.savefig('visualizations/churn_eda_plots.png', dpi=300, bbox_inches='tight')
-print("Visualizations saved as 'visualizations/churn_eda_plots.png'")
+plt.savefig('../visualizations/churn_eda_plots.png', dpi=300, bbox_inches='tight')
+print("Visualizations saved as '../visualizations/churn_eda_plots.png'")
 
 # Feature correlation with churn
 print("\n=== FEATURE CORRELATION WITH CHURN ===")

@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the Excel file and check all sheets
-excel_file = 'SubscriptionUseCase_Dataset.xlsx'
+excel_file = '../data/SubscriptionUseCase_Dataset.xlsx'
 
 print("Exploring all sheets in the Excel file...")
 
@@ -34,6 +34,6 @@ for sheet in sheet_names:
 
 # Save each sheet as separate CSV for easier access
 for sheet_name, df in all_data.items():
-    filename = f"{sheet_name.replace(' ', '_').lower()}_data.csv"
+    filename = f"../data/{sheet_name.replace(' ', '_').lower()}_data.csv"
     df.to_csv(filename, index=False)
     print(f"Saved {sheet_name} as {filename}")

@@ -15,7 +15,7 @@ warnings.filterwarnings('ignore')
 print("=== CHURN PREDICTION ML MODEL ===\n")
 
 # Load the master dataset
-df = pd.read_csv('master_churn_dataset.csv')
+df = pd.read_csv('../data/master_churn_dataset.csv')
 print(f"Dataset loaded: {df.shape}")
 print(f"Churn rate: {df['churned'].mean():.2%}")
 
@@ -152,8 +152,8 @@ if best_model in ['Random Forest', 'Gradient Boosting']:
     sns.barplot(data=feature_importance.head(10), x='importance', y='feature')
     plt.title(f'Top 10 Feature Importance - {best_model}')
     plt.tight_layout()
-    plt.savefig('visualizations/feature_importance.png', dpi=300, bbox_inches='tight')
-    print("Feature importance plot saved as 'visualizations/feature_importance.png'")
+    plt.savefig('../visualizations/feature_importance.png', dpi=300, bbox_inches='tight')
+    print("Feature importance plot saved as '../visualizations/feature_importance.png'")
 
 # ROC Curve
 plt.figure(figsize=(12, 5))
@@ -179,12 +179,12 @@ plt.ylabel('Actual')
 plt.xlabel('Predicted')
 
 plt.tight_layout()
-plt.savefig('visualizations/model_evaluation.png', dpi=300, bbox_inches='tight')
-print("Model evaluation plots saved as 'visualizations/model_evaluation.png'")
+plt.savefig('../visualizations/model_evaluation.png', dpi=300, bbox_inches='tight')
+print("Model evaluation plots saved as '../visualizations/model_evaluation.png'")
 
 # Save the best model and scaler
-joblib.dump(best_model_obj, f'best_churn_model_{best_model.lower().replace(" ", "_")}.pkl')
-joblib.dump(scaler, 'feature_scaler.pkl')
+joblib.dump(best_model_obj, f'../models/best_churn_model_{best_model.lower().replace(" ", "_")}.pkl')
+joblib.dump(scaler, '../models/feature_scaler.pkl')
 print(f"\nBest model saved as 'best_churn_model_{best_model.lower().replace(' ', '_')}.pkl'")
 
 # Model performance summary
@@ -197,7 +197,7 @@ performance_df = pd.DataFrame({
 }).sort_values('Test_ROC_AUC', ascending=False)
 
 print(performance_df)
-performance_df.to_csv('model_performance_summary.csv', index=False)
+performance_df.to_csv('../data/model_performance_summary.csv', index=False)
 
 print("\n5. CHURN PREDICTION INSIGHTS")
 print("Key factors for churn prediction (based on correlations and feature importance):")
@@ -212,5 +212,5 @@ print("This model can help identify users at risk of churning for proactive rete
 
 # Save feature names for future predictions
 feature_names = features_to_use
-joblib.dump(feature_names, 'feature_names.pkl')
+joblib.dump(feature_names, '../models/feature_names.pkl')
 print("\nFeature names saved for future predictions.")

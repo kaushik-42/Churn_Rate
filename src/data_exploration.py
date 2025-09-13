@@ -5,7 +5,7 @@ import seaborn as sns
 
 # Load the dataset
 print("Loading the subscription dataset...")
-df = pd.read_excel('SubscriptionUseCase_Dataset.xlsx')
+df = pd.read_excel('../data/SubscriptionUseCase_Dataset.xlsx')
 
 print("\n=== DATASET OVERVIEW ===")
 print(f"Dataset shape: {df.shape}")
@@ -30,5 +30,5 @@ for col in df.columns:
         print(f"Values: {df[col].unique()[:10]}")  # Show first 10 unique values
 
 # Save basic info to CSV for easier examination
-df.to_csv('subscription_data.csv', index=False)
-print("\nDataset saved as 'subscription_data.csv' for easier access")
+df.to_csv('../data/subscription_data.csv', index=False)
+print("\nDataset saved as '../data/subscription_data.csv' for easier access")
